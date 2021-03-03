@@ -56,7 +56,7 @@ const PostList = () => {
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Delete</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -1,24 +1,22 @@
 const pool = require('../db');
 
-const getPosts = async (req, res) => {
+const listPost = async (req, res) => {
     try {
         const { rows } = await pool.query("SELECT * FROM post");
         res.json(rows)
-        console.log(rows);
     } catch (error) {
         console.log(error);
     }
 }
 
-const postPost = async (req, res) => {
+const createPost = async (req, res) => {
     try {
         const { name, description } = req.body ;
         const newPost = await pool.query(
-            "INSERT INTO post (name, description) VALUES ($1, $2) ",
+            "INSERT INTO post (name, description) VALUES ($1, $2) RETURNING *",
             [name, description]
         );
-        res.json(newPost);
-        console.log(description);
+        res.json(newPost.rows[0]);
     } catch (error) {
         console.log(error.message);
     }
@@ -27,8 +25,8 @@ const postPost = async (req, res) => {
 const deletePost = async (req, res) => {
     try {
         const { id } = req.body;
-        const deletedPost = await pool.query("DELETE FROM post WHERE id = $1", [id]);
-        res.json('Post deleted')
+        const deletedPost = await pool.query("DELETE FROM post WHERE id = $1 RETURNING *", [id]);
+        res.json(deletedPost.rows[0]);
     } catch (error) {
         console.log(error);
     }
@@ -36,7 +34,7 @@ const deletePost = async (req, res) => {
 
 
 module.exports = {
-    getPosts,
-    postPost,
+    listPost,
+    createPost,
     deletePost
 };
