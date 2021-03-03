@@ -24,7 +24,6 @@ app.post('/post', async(req, res) => {
 })
 
 app.get('/get', async(req, res) => {
-    // Fix route
     try {
         const { rows } = await pool.query("SELECT * FROM post");
         res.json(rows)
