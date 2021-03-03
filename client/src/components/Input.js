@@ -15,6 +15,7 @@ const Input = () => {
                 body: JSON.stringify(body)
             })
             console.log("Post created");
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }
