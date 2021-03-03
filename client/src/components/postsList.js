@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 const PostList = () => {
     const [posts, setPosts] = useState([])
+    const [filter, setFilter] = useState('')
 
     const getPosts = async () => {
         try {
@@ -28,13 +29,28 @@ const PostList = () => {
         console.log('Xdd');
     }
 
+    const onSubmitSearch = (e) => {
+        e.preventDefault()
+        console.log(filter);
+    }
+
     useEffect(() => {
         getPosts()
-        .then(()=> console.log(posts))
     }, []);
+
+    let listToRender = (filter === '') ? posts: posts.filter(post => post.name.includes(filter));
 
     return (
         <div>
+            <form onSubmit={onSubmitSearch}>
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search"
+                    value={filter}
+                    onChange={e => setFilter(e.target.value)}
+                />
+            </form>
             <table>
                 <thead>
                 <tr>
@@ -44,7 +60,7 @@ const PostList = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {posts.map(post => (
+                {listToRender.map(post => (
                     <tr key={post.id}>
                         <td>{post.name}</td>
                         <td>{post.description}</td>
