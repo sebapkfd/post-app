@@ -8,12 +8,23 @@ const PostList = () => {
             const response = await fetch("http://localhost:5000/");
             const jsonData = await response.json();
             setPosts(jsonData);
-        } catch (err) {
-            console.error(err.message);
+        } catch (error) {
+            console.log(error);
         }
     };
 
-    const deletePost = async (e) => {
+    const deletePost = async (id) => {
+        try {
+            const body = {id};
+            const response = await fetch("http://localhost:5000/", {
+                method: 'DELETE',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            });
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
         console.log('Xdd');
     }
 
