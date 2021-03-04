@@ -37,7 +37,7 @@ const PostList = () => {
 
     return (
         <div className="list">
-            <div>
+            <div id="searchBar">
                 <form>
                     <input
                         type="text"
