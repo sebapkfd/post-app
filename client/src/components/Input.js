@@ -14,7 +14,6 @@ const Input = () => {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             })
-            console.log("Post created");
             window.location.reload();
         } catch (error) {
             console.log(error);
@@ -23,7 +22,7 @@ const Input = () => {
 
     return (
         <div className="input">
-            <form onSubmit={onSubmitForm}>
+            <form onSubmit={onSubmitForm} id="newPost">
                 <input
                     type="text"
                     name="name"
@@ -38,7 +37,7 @@ const Input = () => {
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
-                <button>Crear</button>
+                <button id="createBtn">Crear</button>
             </form>
         </div>
     )

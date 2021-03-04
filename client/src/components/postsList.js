@@ -29,11 +29,6 @@ const PostList = () => {
         console.log('Xdd');
     }
 
-    const onSubmitSearch = (e) => {
-        e.preventDefault()
-        console.log(filter);
-    }
-
     useEffect(() => {
         getPosts()
     }, []);
@@ -41,38 +36,42 @@ const PostList = () => {
     let listToRender = (filter === '') ? posts: posts.filter(post => post.name.includes(filter));
 
     return (
-        <div>
-            <form onSubmit={onSubmitSearch}>
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="Search"
-                    value={filter}
-                    onChange={e => setFilter(e.target.value)}
-                />
-            </form>
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                {listToRender.map(post => (
-                    <tr key={post.id}>
-                        <td>{post.name}</td>
-                        <td>{post.description}</td>
-                        <td>
-                            <button onClick={() => deletePost(post.id)}>
-                                Delete
-                            </button>
-                        </td>
+        <div className="list">
+            <div>
+                <form>
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search"
+                        value={filter}
+                        onChange={e => setFilter(e.target.value)}
+                    />
+                </form>
+            </div>
+            <div className='tableInfo'>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Action</th>
                     </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {listToRender.map(post => (
+                        <tr key={post.id}>
+                            <td>{post.name}</td>
+                            <td>{post.description}</td>
+                            <td>
+                                <button onClick={() => deletePost(post.id)}>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )     
 }
