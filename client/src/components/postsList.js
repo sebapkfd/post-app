@@ -42,7 +42,7 @@ const PostList = () => {
                     <input
                         type="text"
                         name="search"
-                        placeholder="Search"
+                        placeholder="Filtro de nombre"
                         value={filter}
                         onChange={e => setFilter(e.target.value)}
                     />
@@ -52,9 +52,9 @@ const PostList = () => {
                 <table>
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Action</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Acción</th>
                     </tr>
                     </thead>
                     <tbody>

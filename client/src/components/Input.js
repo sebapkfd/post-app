@@ -26,14 +26,14 @@ const Input = () => {
                 <input
                     type="text"
                     name="name"
-                    placeholder="Name"
+                    placeholder="Nombre"
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
                 <input
                     type="text"
                     name="description"
-                    placeholder="Description"
+                    placeholder="Descripción"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
